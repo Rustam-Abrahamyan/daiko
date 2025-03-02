@@ -1,6 +1,7 @@
-import { AppShell, Burger, Group, Skeleton } from "@mantine/core";
+import { AppShell, Burger, Group, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { ReactNode } from "react";
+import { Navbar } from "../components/Navbar";
 
 export const MainLayout = ({ children }: { children: ReactNode; }) => {
     const [opened, { toggle }] = useDisclosure();
@@ -15,18 +16,14 @@ export const MainLayout = ({ children }: { children: ReactNode; }) => {
         <AppShell.Header>
             <Group h="100%" px="md">
                 <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-                Daiko
+                <Text hiddenFrom="sm">Daiko</Text>
             </Group>
         </AppShell.Header>
         <AppShell.Navbar p="md">
             <Group>
                 <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
             </Group>
-            {Array(15)
-                .fill(0)
-                .map((_, index) => (
-                    <Skeleton key={index} h={28} mt="sm" animate={false} />
-                ))}
+            <Navbar />
         </AppShell.Navbar>
         <AppShell.Main>
             {children}
